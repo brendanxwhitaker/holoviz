@@ -9,7 +9,7 @@ app = Flask(__name__)
 embedding_file = 'test.txt' # change file here 
 
 @app.route('/')
-@app.route('/index')
+@app.route('/look_at')
 def loadEmbeddings():
   embeddings = pyemblib.read(embedding_file, mode=pyemblib.Mode.Text)
   keys = list(embeddings.keys())
@@ -20,6 +20,6 @@ def loadEmbeddings():
   transformed = {}
   for i in range(len(keys)):
     transformed[keys[i]] = values_transformed[i].tolist()
-  return render_template('index.html', data=transformed)
+  return render_template('look_at.html', data=transformed)
 
 
