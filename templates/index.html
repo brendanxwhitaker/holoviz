@@ -9,12 +9,20 @@
     const mainScene = document.getElementById("points");
 
     function addSphere(key) {
-      var value = embeddings[key]
+      var value = embeddings[key];
       var datapoint = document.createElement("a-sphere");
       datapoint.setAttribute('position', String(value[0]) + " " + String(value[1]) + " " + String(value[2])); 
       datapoint.setAttribute('color', 'blue');
       datapoint.setAttribute('scale', String(0.2) + " " + String(0.2) + " " + String(0.2) + " ");
-      mainScene.appendChild(datapoint); 
+      
+      var label = document.createElement("a-text");
+      label.setAttribute('position', String(value[0] + 0.1) + " " + String(value[1] + 0.1) + " " + String(value[2] + 0.1)); 
+      label.setAttribute('value', key);
+      //label.setAttribute('geometry', 'primitive:plane'); 
+      label.setAttribute('look-at', '#camera'); 
+      
+      mainScene.appendChild(datapoint);
+      mainScene.appendChild(label); 
     }
 
     var embeddings = JSON.parse('{{ data | tojson |safe }}')

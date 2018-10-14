@@ -12,8 +12,8 @@ embedding_file = 'test.txt' # change file here
 @app.route('/index')
 def loadEmbeddings():
   embeddings = pyemblib.read(embedding_file, mode=pyemblib.Mode.Text)
-  keys = embeddings.keys()
-  values = np.array(embeddings.values())
+  keys = list(embeddings.keys())
+  values = np.array(list(embeddings.values()))
   mds = MDS(n_components=3)
   values_transformed = mds.fit_transform(values)
 
