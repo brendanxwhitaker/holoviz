@@ -6,8 +6,11 @@
     <a-sphere color="red" position="0 1.5 -2"></a-sphere>
   </a-scene>
   <script type ="text/javascript">
-    var embeddings = {{ data }}
+    var embeddings = JSON.parse('{{ data | tojson |safe }}')
+    $ = (queryString) => document.querySelector(queryString);
+    $('a-sphere').setAttribute('color', 'blue');
   </script>
-  <script type="text/javascipt" src="script.js"></script>
+  <!-- TODO - eventually move script code into separate file -->
+  <script type="text/javascipt" src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
