@@ -1,5 +1,5 @@
 $ = (queryString) => document.querySelector(queryString);
 
-$('a-sphere').setAttribute('color', 'blue);
+$('a-sphere').setAttribute('color', 'blue');
 
 
