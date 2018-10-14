@@ -2,11 +2,25 @@
 
 <body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.7.1/aframe.js"></script>
-  <a-scene>
+  <a-scene id='points'>
     <a-sphere color="red" position="0 1.5 -2"></a-sphere>
   </a-scene>
+  </a-scene>
   <script type ="text/javascript">
+    const mainScene = document.getElementById("points");
+
+    function addSphere(key) {
+      var value = embeddings[key]
+      var datapoint = document.createElement("a-sphere");
+      datapoint.setAttribute('position', String(value[0]) + " " + String(value[1]) + " " + String(value[2])); 
+      datapoint.setAttribute('color', 'blue');
+      datapoint.setAttribute('scale', String(0.2) + " " + String(0.2) + " " + String(0.2) + " ");
+      mainScene.appendChild(datapoint); 
+    }
+
     var embeddings = JSON.parse('{{ data | tojson |safe }}')
+    Object.keys(embeddings).forEach(addSphere);
+    
     $ = (queryString) => document.querySelector(queryString);
     $('a-sphere').setAttribute('color', 'blue');
   </script>
